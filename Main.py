@@ -1,0 +1,97 @@
+import pygame
+import random
+import sys
+import time
+
+# Initialize Pygame
+pygame.init()
+
+# Screen setup
+WIDTH, HEIGHT = 600, 400
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Rock Paper Scissors")
+
+# Colors and fonts
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+font = pygame.font.SysFont(None, 36)
+result_font = pygame.font.SysFont(None, 48)
+
+# Load and scale images
+rock_img = pygame.image.load("rock.png").convert_alpha()
+paper_img = pygame.image.load("paper.png").convert_alpha()
+scissors_img = pygame.image.load("scissors.png").convert_alpha()
+
+rock_img = pygame.transform.scale(rock_img, (100, 100))
+paper_img = pygame.transform.scale(paper_img, (100, 100))
+scissors_img = pygame.transform.scale(scissors_img, (100, 100))
+
+# Choices and positions
+choices = ["Rock", "Paper", "Scissors"]
+images = {
+    "Rock": rock_img,
+    "Paper": paper_img,
+    "Scissors": scissors_img
+}
+positions = {
+    "Rock": (50, 270),
+    "Paper": (250, 270),
+    "Scissors": (450, 270)
+}
+
+# Game logic
+def get_winner(player, computer):
+    if player == computer:
+        return "It's a tie!"
+    elif (player == "Rock" and computer == "Scissors") or \
+         (player == "Paper" and computer == "Rock") or \
+         (player == "Scissors" and computer == "Paper"):
+        return "You win!"
+    else:
+        return "You lose!"
+
+def get_clicked_choice(pos):
+    for choice, (x, y) in positions.items():
+        rect = pygame.Rect(x, y, 100, 100)
+        if rect.collidepoint(pos):
+            return choice
+    return None
+
+# Game state
+player_choice = None
+computer_choice = None
+result = ""
+
+# Main loop
+running = True
+while running:
+    screen.fill(WHITE)
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            sys.exit()
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            clicked = get_clicked_choice(event.pos)
+            if clicked:
+                player_choice = clicked
+                computer_choice = random.choice(choices)
+                result = get_winner(player_choice, computer_choice)
+
+    # Draw player options
+    for choice, img in images.items():
+        screen.blit(img, positions[choice])
+
+    # Display result
+    if player_choice and computer_choice:
+        p_txt = font.render(f"You chose: {player_choice}", True, BLACK)
+        c_txt = font.render(f"Computer chose: {computer_choice}", True, BLACK)
+        r_txt = result_font.render(result, True, BLACK)
+
+        screen.blit(p_txt, (50, 50))
+        screen.blit(c_txt, (50, 100))
+        screen.blit(r_txt, (50, 160))
+
+    pygame.display.flip()
