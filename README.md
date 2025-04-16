@@ -1,4 +1,4 @@
-# 🐍 Python Projects by Cheese-code00812
+# 🐍 Description
 
 Welcome to my Python GitHub repository! I'm currently learning Python, and this repo contains the projects I’ve built and created so far. Thank you for visiting!
 
