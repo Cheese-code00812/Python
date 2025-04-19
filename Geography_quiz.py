@@ -48,6 +48,6 @@ while question_count <= 15 and questions:
     else:
         print(f"Better luck next time! The correct answer was: {actual_answer}")
 
-score = (correct_answers/15) * 10
+score = (correct_answers/15) * 100
 
 print(f"your accuracy score was {score:.2f}%")
