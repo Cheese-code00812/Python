@@ -12,9 +12,7 @@ Hi! I'm a young coder passionate about tech and programming. I believe coding ca
 
 ## ▶️ How to Run
 
-Make sure you have Python installed, then run any file using:
+Make sure you have Python installed(You would need to install more things for some projects), then run any file using:
 
 ```bash
 python filename.py
-
-## Remember you need to install more things for some projects(So I recommend searching up what you need to install).
