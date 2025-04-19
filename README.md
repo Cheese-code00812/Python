@@ -17,4 +17,6 @@ Make sure you have Python installed, then run any file using:
 ```bash
 python filename.py
 
+exit
+
 Remember you need to install more things for some projects(So I recommend searching up what you need to install).
